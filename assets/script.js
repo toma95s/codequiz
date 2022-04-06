@@ -36,7 +36,7 @@ const quizQuestions = [
     correctAnswer: "b"
 },
 {
-    question: "When an operator’s value is NULL, the typeof returned by the unary operator is:",
+    question: "When an operators value is NULL, the typeof returned by the unary operator is:",
    choices:{
     a: "Boolean",
     b: "Undefined",
@@ -86,7 +86,7 @@ var quiz = document.getElementById("quiz");
 
 var totalTime = 120;
 var currentQuestion;
-var choiceButton;
+var choiceButton = document.querySelector("answers");
 
 //add start button listener
 startButton.addEventListener("click",startQuiz);
@@ -109,12 +109,13 @@ return intervalTime;
 function startQuiz(){
 console.log("Start!");
 startButton.addEventListener('click',timer);  
-startButton.classList.add('hide');
+//startButton.classList.add('hide');
 
 document.querySelector(".container").style.display = "none";
 quiz.style.display = "block";
 
 currentQuestion = 0;
+nextQuestion();
 
 }
 //need a function to move to next question
@@ -127,6 +128,7 @@ function nextQuestion(){
     headerQuestion.textContent = questionTest.question;
 
     for (var i = 0; i<quizChoices.length; i++){
+        console.log(quizChoices);
         var choice = quizChoices[i];
         var choiceButton = document.querySelector("#answer"+i);
         choiceButton.textContent = choice;
@@ -144,17 +146,18 @@ document.querySelector("#answers").addEventListener("click",checkanswer);
 //need variables for validation
 const validateText = document.getElementById("validationDisplay");
 
+
 //need to have a function to validate answers
 //need to see if anser is correct move on to the next and if answer is incorrect subtract time?
-function checkanswer(){
+function checkanswer(eventChoice){
     validateText.textContent=" "
     //validateText.style.display="block";
-
+    let choiceButton = eventChoice.target;
     //need to somehow compare the text of the choice button with the current answer to the CURRENT question
     //need a function for this in order to use the event.target
     //need a function to calculate score and adjust the timer
     //need to have a function adjust the time using math when it's an incorrect answer
-    if(choiceButton.textContent === quizQuestions[currentQuestion].correctAnswer){
+    if(validateAnswerCorrect(choiceButton)){
         validateText.textContent = "Correct!";
         setTimeout(function(){
             validateText.style.display = "none"},1000);
@@ -177,6 +180,9 @@ function checkanswer(){
 
 }
 
+function validateAnswerCorrect(){
+    return choiceButton.textContent === quizQuestions[currentQuestion].correctAnswer;
+}
 
 
 
