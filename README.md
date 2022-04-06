@@ -22,10 +22,10 @@ THEN time is subtracted from the clock
 WHEN all questions are answered or the timer reaches 0
 THEN the game is over
 WHEN the game is over
-<<<<<<< HEAD
 THEN I can save my initials and my score
-=======
 THEN I can save my initials and my score!
->>>>>>> 9d249690896ef8981b9f6ce74ca98e8723da7864
 
+
+
+Image 4-5-22 at 11.32 PM.jpg
 
