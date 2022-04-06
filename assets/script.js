@@ -86,9 +86,10 @@ var quiz = document.getElementById("quiz");
 
 var totalTime = 120;
 var currentQuestion;
+var choiceButton;
 
 //add start button listener
-startButton.addEventListener('click',startQuiz);
+startButton.addEventListener("click",startQuiz);
 //need to have a function for the time
 function timer(){
 var intervalTime = setInterval(function(){
@@ -117,6 +118,7 @@ currentQuestion = 0;
 
 }
 //need a function to move to next question
+//need to have a function that uses the questions
 function nextQuestion(){
     var questionTest = quizQuestions[currentQuestion];
     var quizChoices = questionTest.choices;
@@ -137,23 +139,58 @@ function nextQuestion(){
 //     }
 // }
 
-document.querySelector("#answers").addEventListener("click",)
+document.querySelector("#answers").addEventListener("click",checkanswer);
 
+//need variables for validation
+const validateText = document.getElementById("validationDisplay");
 
-
-//need to have a function adjust the time using math when it's an incorrect answer
-
-//need to have a function that uses the questions
-
-//the answers will need to be a button, append that button into the html from here?
-
-
-//need a function to calculate score and adjust the timer
-
+//need to have a function to validate answers
 //need to see if anser is correct move on to the next and if answer is incorrect subtract time?
+function checkanswer(){
+    validateText.textContent=" "
+    //validateText.style.display="block";
+
+    //need to somehow compare the text of the choice button with the current answer to the CURRENT question
+    //need a function for this in order to use the event.target
+    //need a function to calculate score and adjust the timer
+    //need to have a function adjust the time using math when it's an incorrect answer
+    if(choiceButton.textContent === quizQuestions[currentQuestion].correctAnswer){
+        validateText.textContent = "Correct!";
+        setTimeout(function(){
+            validateText.style.display = "none"},1000);
+        timer.textContent = totalTime + "seconds";
+    }
+    else{
+        validateText.textContent = "WRONG!"
+        setTimeout(function(){validateText.style.display="none"},1000);
+        
+        if(totalTime >= 10){
+            totalTime -= 10;
+            timer.textContent = totalTime + "seconds";
+        }
+        else{
+            timer = 0;
+            console.log("QUIZ OVER");
+            endquiz();
+        }
+    }
+
+}
+
+
+
+
+
+
+
+
+
 
 //function to display and store highschores
 
 //need a function to end the quiz
+// function endquiz(
+
+// )
 
 
