@@ -1,0 +1,11 @@
+body{
+    background-color: pink;
+    font-family: Verdana, Geneva, Tahoma, sans-serif;
+}
+
+.button{
+    display:block;
+    text-align:center;
+    background-color: white;
+}
+

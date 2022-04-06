@@ -83,6 +83,11 @@ const questionsQuiz =document.getElementById("questions");
 const answersQuiz = document.getElementById("answers");
 var timer = document.getElementById("timer");
 var quiz = document.getElementById("quiz");
+var answer1 = document.getElementById("answer1");
+var answer2 = document.getElementById("answer2");
+var answer3 = document.getElementById("answer3");
+var answer4 = document.getElementById("answer4");
+
 
 var totalTime = 120;
 var currentQuestion;
@@ -121,6 +126,7 @@ nextQuestion();
 //need a function to move to next question
 //need to have a function that uses the questions
 function nextQuestion(){
+    /*
     var questionTest = quizQuestions[currentQuestion];
     var quizChoices = questionTest.choices;
 
@@ -130,9 +136,18 @@ function nextQuestion(){
     for (var i = 0; i<quizChoices.length; i++){
         console.log(quizChoices);
         var choice = quizChoices[i];
-        var choiceButton = document.querySelector("#answer"+i);
+        var choiceButton = docu
         choiceButton.textContent = choice;
-    }
+    }*/
+
+    var questionTest = quizQuestions[currentQuestion];
+    var quizChoices = questionTest.choices;
+
+    var headerQuestion = document.getElementById("questions");
+    headerQuestion.textContent = questionTest.question;
+
+    
+
 }
 // function nextQuestion(){
 //     var arrayQuiz = [];
@@ -150,7 +165,7 @@ const validateText = document.getElementById("validationDisplay");
 //need to have a function to validate answers
 //need to see if anser is correct move on to the next and if answer is incorrect subtract time?
 function checkanswer(eventChoice){
-    validateText.textContent=" "
+    //validateText.textContent=" "
     //validateText.style.display="block";
     let choiceButton = eventChoice.target;
     //need to somehow compare the text of the choice button with the current answer to the CURRENT question
