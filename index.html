@@ -8,7 +8,7 @@
     <title>Code Quiz 2022!</title>
 </head>
 <body>
-    <div id = "firstPage">
+    <div id = "firstPage" class="container">
      <h1>Start your quiz on Javascript!</h1>
         <p>
             You will have a quiz on the following questions, try to answer all questions given in a time limit.
@@ -18,10 +18,20 @@
         <button id="nextButton">Next Question</button>
     </div>
 
-    <div class="container">
-        <h1 id="timer"></h1>
-        <div class="questions" id="questions"></div>
-        <div class="answers" id="answers"></div>
+    <div hidden class="row" id = "quiz">
+        <p id="timer"></p>
+      <h2 id = "questions"></h2>
+      <div id="answers">
+          <button id="answer1"></button>
+          <button id = "answer2"></button>
+          <button id = "answer3"></button>
+          <button id = "answer4"></button>
+      </div>
+
+      <div id = "score">
+          <p id="scoreText"></p>
+      </div>
+
         <div id="highScore">
             <!--need to add highscore code-->
         </div>

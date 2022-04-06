@@ -81,17 +81,65 @@ const startButton = document.getElementById("startQuiz");
 const nextButton = document.getElementById("nextButton");
 const questionsQuiz =document.getElementById("questions"); 
 const answersQuiz = document.getElementById("answers");
+var timer = document.getElementById("timer");
+var quiz = document.getElementById("quiz");
 
-//eventListeners
-startButton.addEventListener('click',)
+var totalTime = 120;
+var currentQuestion;
+
+//add start button listener
+startButton.addEventListener('click',startQuiz);
 //need to have a function for the time
 function timer(){
-
+var intervalTime = setInterval(function(){
+    totalTime--;
+    timer.textcontent = totalTime;
+    if(totalTime <=0){
+        clearInterval(intervalTime);
+        return;
+    }
+},1000);
+return intervalTime;
 }
+    
+
+
 //function to start the quiz
 function startQuiz(){
-    
+console.log("Start!");
+startButton.addEventListener('click',timer);  
+startButton.classList.add('hide');
+
+document.querySelector(".container").style.display = "none";
+quiz.style.display = "block";
+
+currentQuestion = 0;
+
 }
+//need a function to move to next question
+function nextQuestion(){
+    var questionTest = quizQuestions[currentQuestion];
+    var quizChoices = questionTest.choices;
+
+    var headerQuestion = document.getElementById("questions");
+    headerQuestion.textContent = questionTest.question;
+
+    for (var i = 0; i<quizChoices.length; i++){
+        var choice = quizChoices[i];
+        var choiceButton = document.querySelector("#answer"+i);
+        choiceButton.textContent = choice;
+    }
+}
+// function nextQuestion(){
+//     var arrayQuiz = [];
+//     for (var i=0; i<quizQuestions.length;i++){
+//         arrayQuiz =
+//     }
+// }
+
+document.querySelector("#answers").addEventListener("click",)
+
+
 
 //need to have a function adjust the time using math when it's an incorrect answer
 
