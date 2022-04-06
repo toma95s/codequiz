@@ -24,4 +24,4 @@ THEN the game is over
 WHEN the game is over
 THEN I can save my initials and my score!
 
-[Image 4-5-22 at 11 32 PM](https://user-images.githubusercontent.com/101033224/161910332-23a33188-be5d-4794-935b-dfc71d303891.jpg)
+
