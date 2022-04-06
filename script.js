@@ -76,3 +76,36 @@ const quizQuestions = [
     correctAnswer: "a"
 }]
 
+//need to initialize variables
+const startButton = document.getElementById("startQuiz");
+const nextButton = document.getElementById("nextButton");
+const questionsQuiz =document.getElementById("questions"); 
+const answersQuiz = document.getElementById("answers");
+
+//eventListeners
+startButton.addEventListener('click',)
+//need to have a function for the time
+function timer(){
+
+}
+//function to start the quiz
+function startQuiz(){
+    
+}
+
+//need to have a function adjust the time using math when it's an incorrect answer
+
+//need to have a function that uses the questions
+
+//the answers will need to be a button, append that button into the html from here?
+
+
+//need a function to calculate score and adjust the timer
+
+//need to see if anser is correct move on to the next and if answer is incorrect subtract time?
+
+//function to display and store highschores
+
+//need a function to end the quiz
+
+
