@@ -24,6 +24,10 @@ THEN the game is over
 WHEN the game is over
 THEN I can save my initials and my score
 THEN I can save my initials and my score!
+<<<<<<< HEAD
+=======
+
+>>>>>>> f03d429e66906a43e6539f8f2757f2a5047f9b31
 
 
 
