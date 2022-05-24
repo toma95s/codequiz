@@ -1,217 +1,167 @@
-/*GIVEN I am taking a code quiz
-WHEN I click the start button
-THEN a timer starts and I am presented with a question
-WHEN I answer a question
-THEN I am presented with another question
-WHEN I answer a question incorrectly
-THEN time is subtracted from the clock
-WHEN all questions are answered or the timer reaches 0
-THEN the game is over
-WHEN the game is over
-THEN I can save my initials and my score
-*/
+var questionsContainerEl = document.querySelector("#questions");
+
+var promptEl = document.querySelector("#question-prompt");
+var choicesEl = document.querySelector("#question-choices");
+
+var finalScoreEl = document.querySelector("#final-score");
+var timerEl = document.querySelector("#countdown");
+
+var feedbackEl = document.getElementById("right-wrong");
+var highScoreScreenEl = document.getElementById("highscore-input");
+var initialsEl = document.getElementById("player");
+
+var startBtn = document.querySelector("#start");
+var submitBtn = document.querySelector("#submit")
+
+var currentQuestion = 0;
+var time = 100;
+var timer;
 
 
-// Questions for quiz: https://www.interviewbit.com/javascript-mcq///
+var questions = [
 
-const quizQuestions = [
-{
-    question: "Which function is used to serialize an object into a JSON string in Javascript?",
-   choices:{
-    a: "stringify ()",
-    b: "parse ()",
-    c: "convert ()",
-    d: "None of the above"
-   },
-    correctAnswer: "a"
-},
-{
-    question: "What does the Javascript “debugger” statement do?",
-   choices:{
-    a: "It will debug all the errors in the program at the runtime",
-    b: "It acts as a breakpoint in a program",
-    c: "It will debug error in the current statement if any",
-    d: "All of the above"
-   },
-    correctAnswer: "b"
-},
-{
-    question: "When an operators value is NULL, the typeof returned by the unary operator is:",
-   choices:{
-    a: "Boolean",
-    b: "Undefined",
-    c: "Object",
-    d: "Integer"
-   },
-    correctAnswer: "c"
-},
-{
-    question: "What keyword is used to check whether a given property is valid or not?:",
-   choices:{
-    a: "in",
-    b: "is in",
-    c: "exists",
-    d: "lies"
-   },
-    correctAnswer: "a"
-},
-{
-    question: "When the switch statement matches the expression with the given labels, how is the comparison done?",
-   choices:{
-    a: "Both the datatype and the result of the expression are compared.",
-    b: "Only the datatype of the expression is compared",
-    c: "Only the value of the expression is compared",
-    d: "None of the above"
-   },
-    correctAnswer: "a"
-},
-{
-    question: "How can a dataype be declared to be a constant type?",
-   choices:{
-    a: "const",
-    b: "var",
-    c: "let",
-    d: "constant"
-   },
-    correctAnswer: "a"
-}]
+    {
+        prompt: "Inside which HTML element do we put the JavaScript?",
+        choices: ["<scripting>", "<javascript>", "<script>", "<js>"],
+        answer: "<script>"
+    },
 
-//need to initialize variables
-const startButton = document.getElementById("startQuiz");
-const nextButton = document.getElementById("nextButton");
-const questionsQuiz =document.getElementById("questions"); 
-const answersQuiz = document.getElementById("answers");
-var timer = document.getElementById("timer");
-var quiz = document.getElementById("quiz");
-var answer1 = document.getElementById("answer1");
-var answer2 = document.getElementById("answer2");
-var answer3 = document.getElementById("answer3");
-var answer4 = document.getElementById("answer4");
+    {
+        prompt: "Where is the correct place to insert the JavaScript?",
+        choices: ["The <head> section", "both the <head> section and the <body> section are correct", "the <body> section", "A <p> element"],
+        answer: "the <body> section" 
+    },
 
+    {
+        prompt: "What is the correct syntax for referring to an external script called `xxx.js`?",
+        choices: ["<script name=`xxx.js`", "<script src=`xxx.js`>", "<script href=`xxx.js`>", "<script rel=`xxx.js`"],
+        answer:  "<script src=`xxx.js`>"
+    },
 
-var totalTime = 120;
-var currentQuestion;
-var choiceButton = document.querySelector("answers");
-
-//add start button listener
-startButton.addEventListener("click",startQuiz);
-//need to have a function for the time
-function timer(){
-var intervalTime = setInterval(function(){
-    totalTime--;
-    timer.textcontent = totalTime;
-    if(totalTime <=0){
-        clearInterval(intervalTime);
-        return;
+    {
+        prompt: "The external JavaScript file must contain the <script> tag.",
+        choices: ["true", "false"],
+        answer: "false"
     }
-},1000);
-return intervalTime;
-}
+
+];
+
+var startQuiz = function() {
     
+    var startInfoEl = document.querySelector(".start-info");
+    startInfoEl.setAttribute("class", "hide");
+    questionsContainerEl.removeAttribute("class");
+    timer = setInterval(clock, 1000);
+    timerEl.textContent = time;
+    displayQuestion();
 
+};
 
-//function to start the quiz
-function startQuiz(){
-console.log("Start!");
-startButton.addEventListener('click',timer);  
-//startButton.classList.add('hide');
+var displayQuestion = function() {
 
-document.querySelector(".container").style.display = "none";
-quiz.style.display = "block";
+    var questionIndex = questions[currentQuestion];
+    promptEl.textContent = questionIndex.prompt;
+    choicesEl.innerHTML = "";
 
-currentQuestion = 0;
-nextQuestion();
+    questionIndex.choices.forEach(function(choices, i) {
 
-}
-//need a function to move to next question
-//need to have a function that uses the questions
-function nextQuestion(){
-    /*
-    var questionTest = quizQuestions[currentQuestion];
-    var quizChoices = questionTest.choices;
+        var choiceBtn = document.createElement("button");
+        choiceBtn.setAttribute("class", "choice btn btn-outline-primary")
+        choiceBtn.setAttribute("value", choices);
+        choiceBtn.textContent = i + 1 + ". " + choices;
+        choiceBtn.onclick = choiceClick;
+        choicesEl.appendChild(choiceBtn);
 
-    var headerQuestion = document.getElementById("questions");
-    headerQuestion.textContent = questionTest.question;
-
-    for (var i = 0; i<quizChoices.length; i++){
-        console.log(quizChoices);
-        var choice = quizChoices[i];
-        var choiceButton = docu
-        choiceButton.textContent = choice;
-    }*/
-
-    var questionTest = quizQuestions[currentQuestion];
-    var quizChoices = questionTest.choices;
-
-    var headerQuestion = document.getElementById("questions");
-    headerQuestion.textContent = questionTest.question;
-
-    
+    });
 
 }
-// function nextQuestion(){
-//     var arrayQuiz = [];
-//     for (var i=0; i<quizQuestions.length;i++){
-//         arrayQuiz =
-//     }
-// }
 
-document.querySelector("#answers").addEventListener("click",checkanswer);
+var choiceClick = function() {
 
-//need variables for validation
-const validateText = document.getElementById("validationDisplay");
+    if (this.value !== questions[currentQuestion].answer) {
 
+        time -= 10;
+        timerEl.textContent = time;
+        feedbackEl.textContent = "Wrong!";
 
-//need to have a function to validate answers
-//need to see if anser is correct move on to the next and if answer is incorrect subtract time?
-function checkanswer(eventChoice){
-    //validateText.textContent=" "
-    //validateText.style.display="block";
-    let choiceButton = eventChoice.target;
-    //need to somehow compare the text of the choice button with the current answer to the CURRENT question
-    //need a function for this in order to use the event.target
-    //need a function to calculate score and adjust the timer
-    //need to have a function adjust the time using math when it's an incorrect answer
-    if(validateAnswerCorrect(choiceButton)){
-        validateText.textContent = "Correct!";
-        setTimeout(function(){
-            validateText.style.display = "none"},1000);
-        timer.textContent = totalTime + "seconds";
-    }
-    else{
-        validateText.textContent = "WRONG!"
-        setTimeout(function(){validateText.style.display="none"},1000);
-        
-        if(totalTime >= 10){
-            totalTime -= 10;
-            timer.textContent = totalTime + "seconds";
-        }
-        else{
-            timer = 0;
-            console.log("QUIZ OVER");
-            endquiz();
-        }
+    } else {
+
+        feedbackEl.textContent = "Correct!";
+
+    };
+
+    feedbackEl.setAttribute("class", "feedback");
+
+    setTimeout(function() {
+
+        feedbackEl.setAttribute("class", "feedback hide");
+
+    }, 1000);
+
+    currentQuestion++;
+
+    setTimeout(() => {
+
+        if (currentQuestion === questions.length) {
+
+            endQuiz();
+
+    } else {
+
+        displayQuestion();
+
+    };
+
+    }, 1000);
+
+};
+
+var clock = function() {
+
+    time--;
+    timerEl.textContent = time;
+
+    if (time <= 0) {
+
+        endQuiz();
+
     }
 
-}
+};
 
-function validateAnswerCorrect(){
-    return choiceButton.textContent === quizQuestions[currentQuestion].correctAnswer;
-}
+var endQuiz = function() {
+    clearInterval(timer);
 
+    questionsContainerEl.setAttribute("class", "hide");
 
+    highScoreScreenEl.removeAttribute("class");
 
+    finalScoreEl.textContent = time;
+};
 
+var saveScore = function() {
 
+    var initials = initialsEl.value.trim();
 
+    if (initials !== "") {
 
+        var highscores = JSON.parse(window.localStorage.getItem("highscores")) || [];
 
+        var userScore = {
 
-//function to display and store highschores
+            score: time,
+            initials: initials
 
-//need a function to end the quiz
-// function endquiz(
+        };
 
-// )
+        highscores.push(userScore);
+        window.localStorage.setItem("highscores", JSON.stringify(highscores));
+        window.location.href = "highscores.html";
+        window.location.reload();
 
+    };
 
+};
+
+submitBtn.onclick = saveScore;
+startBtn.onclick = startQuiz;
