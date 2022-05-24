@@ -1,0 +1,46 @@
+ul, #back-btn {
+    display: flex;
+    justify-content: space-between;
+    padding: 1rem 2rem;
+  }
+  
+  .noDecoration {
+      text-decoration: none;
+      color: rgb(211, 119, 211);
+  }
+  
+  .start-info {
+      text-align: center;
+      padding-top: 2%;
+  }
+  
+  #question-prompt {
+      text-align: center;
+      padding-top: 2%;
+  }
+  
+  #right-wrong {
+      text-align: center;
+      font-size: 20px;
+      padding-top: 1rem;
+  }
+  
+  #highscore-input {
+      text-align: center;
+      padding-top: 2%;
+  }
+  
+  #submit {
+      margin-top: 1%;
+  }
+  
+  #highscores {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      padding-top: 2%;
+  }
+  
+  .hide {
+      display: none;
+  }
