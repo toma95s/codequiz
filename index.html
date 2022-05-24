@@ -3,42 +3,66 @@
 <head>
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.1/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-F3w7mX95PdgyTmZZMECAngseQB83DfGTowi0iMjiWaeVhAn4FJkqJByhZMI3AhiU" crossorigin="anonymous"> <!-- Link to bootstrap CSS -->
+    <link rel="stylesheet" type="text/css" href="./assets/css/style.css" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="stylesheet" href="assets/style.css">
-    <title>Code Quiz 2022!</title>
+    <title>Code Quiz</title>
 </head>
-<body>
-    <div id = "firstPage" class="container">
-     <h1>Start your quiz on Javascript!</h1>
-        <p>
-            You will have a quiz on the following questions, try to answer all questions given in a time limit.
-            If you answer incorrectly, this will take time off so please try to answer everything correctly! Good luck!
-        </p>
-        <button id="startQuiz" value="Start">Start Quiz!</button>
-        <button id="nextButton">Next Question</button>
-    </div>
 
-    <div hidden class="row" id = "quiz">
-        <p id="timer"></p>
-      <h2 id = "questions"></h2>
-      <div id="answers">
-          <button id = "answer1" class="button">A</button>
-          <button id = "answer2" class="button">B</button>
-          <button id = "answer3" class="button">C</button>
-          <button id = "answer4" class ="button">D</button>
-      </div>
+<body class ="bg-dark text-light">
 
-      <div id = "validation">
-          <p id="validationDisplay"></p>
-      </div>
+    <header>
 
-        <div id="highScore">
-            <!--need to add highscore code-->
-        </div>
-    </div>
+        <nav>
+
+            <ul>
+                <a href="highscore.html" class="noDecoration"><li class="nav" id="high-scores">Check Out Your HighScores!!</li></a>
+                <li class="nav" id="timer">Time Left: &nbsp;<span id="countdown"></span></li>
+            </ul>
+
+        </nav>
+
+    </header>
+
+    <section class="border-secondary rounded" id="card">
+
+        <div class="start-info">
+        
+            <h1>Code Quiz</h1>
+            <p>answer the following JavaScript questions within the time limit.
+            <br />wrong answers recieve 10 second penalty</p>
     
+            <button type="button" id="start" class="btn btn-info">Start Quiz</button>
+    
+        </div>
 
+        <div class="hide" id="questions">
 
-    <script src="assets/script.js"></script>
+            <h2 id="question-prompt"></h2>
+            <div id="question-choices" class="choices d-grid gap-2 col-6 mx-auto"></div>
+    
+        </div>
+
+        <div id="right-wrong" class="feedback hide"></div>
+
+        <div class="hide" id="highscore-input">
+
+            <h2>
+                Finished! <br />
+                Your final score is: <span id="final-score"></span>
+            </h2>
+
+            <p>
+                Enter your name:
+                <input type="text" id="player" name="titles" /> <br />
+                <button id="submit" class="btn btn-success">Submit</button>
+            </p>
+
+        </div>
+
+    </section>
+
+    <script type="text/javascript" src="./assets/js/script.js"></script>
+
 </body>
 </html>
